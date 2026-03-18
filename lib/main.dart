@@ -10,18 +10,6 @@ class BMICalculator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // theme: ThemeData(
-      //   appBarTheme: AppBarThemeData(
-      //     backgroundColor: Color(0xFF0A0321),
-      //     foregroundColor: Colors.white,
-      //   ),
-      //   floatingActionButtonTheme: FloatingActionButtonThemeData(
-      //     backgroundColor: Colors.purple,
-      //     foregroundColor: Colors.white,
-      //   ),
-      //   scaffoldBackgroundColor: Color(0xFF0A0321),
-      //   textTheme: TextTheme(bodyMedium: TextStyle(color: Colors.white)),
-      // ),
       theme: ThemeData.dark().copyWith(
         appBarTheme: AppBarThemeData(backgroundColor: Color(0xFF0A0321)),
         scaffoldBackgroundColor: Color(0xFF0A0321),
@@ -30,5 +18,3 @@ class BMICalculator extends StatelessWidget {
     );
   }
 }
-
-
