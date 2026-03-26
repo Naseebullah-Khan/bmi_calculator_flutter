@@ -19,8 +19,7 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
-  Gender selectedGender = Gender.male;
-  bool isGenderSelected = false;
+  Gender? selectedGender;
 
   @override
   Widget build(BuildContext context) {
@@ -36,16 +35,13 @@ class _InputPageState extends State<InputPage> {
                   child: GestureDetector(
                     onTap: () => {
                       setState(() {
-                        if (selectedGender == Gender.male && isGenderSelected) {
-                          isGenderSelected = false;
-                        } else {
-                          isGenderSelected = true;
-                          selectedGender = Gender.male;
-                        }
+                        selectedGender == Gender.male
+                            ? selectedGender = null
+                            : selectedGender = Gender.male;
                       }),
                     },
                     child: ReusableCard(
-                      color: isGenderSelected && selectedGender == Gender.male
+                      color: selectedGender == Gender.male
                           ? containerBackgroundColor
                           : containerInActiveBackgroundColor,
                       child: IconContent(
@@ -59,16 +55,13 @@ class _InputPageState extends State<InputPage> {
                   child: GestureDetector(
                     onTap: () => {
                       setState(() {
-                        if (selectedGender == Gender.female && isGenderSelected) {
-                          isGenderSelected = false;
-                        } else {
-                          isGenderSelected = true;
-                          selectedGender = Gender.female;
-                        }
+                        selectedGender == Gender.female
+                            ? selectedGender = null
+                            : selectedGender = Gender.female;
                       }),
                     },
                     child: ReusableCard(
-                      color: isGenderSelected && selectedGender == Gender.female
+                      color: selectedGender == Gender.female
                           ? containerBackgroundColor
                           : containerInActiveBackgroundColor,
                       child: IconContent(
