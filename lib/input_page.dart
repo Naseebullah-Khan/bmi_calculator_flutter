@@ -9,6 +9,8 @@ const bottomContainerColor = Color(0xFFEB1555);
 const containerBackgroundColor = Color(0xFF1D1E33);
 const containerInActiveBackgroundColor = Color(0xFF111328);
 
+enum Gender { male, female }
+
 class InputPage extends StatefulWidget {
   const InputPage({super.key});
 
@@ -17,7 +19,7 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
-  String selectedGender = "MALE";
+  Gender selectedGender = Gender.male;
   bool isGenderSelected = false;
 
   @override
@@ -34,17 +36,16 @@ class _InputPageState extends State<InputPage> {
                   child: GestureDetector(
                     onTap: () => {
                       setState(() {
-                        if (selectedGender == "MALE" && isGenderSelected) {
+                        if (selectedGender == Gender.male && isGenderSelected) {
                           isGenderSelected = false;
-                          selectedGender = "";
                         } else {
                           isGenderSelected = true;
-                          selectedGender = "MALE";
+                          selectedGender = Gender.male;
                         }
                       }),
                     },
                     child: ReusableCard(
-                      color: isGenderSelected && selectedGender == "MALE"
+                      color: isGenderSelected && selectedGender == Gender.male
                           ? containerBackgroundColor
                           : containerInActiveBackgroundColor,
                       child: IconContent(
@@ -58,17 +59,16 @@ class _InputPageState extends State<InputPage> {
                   child: GestureDetector(
                     onTap: () => {
                       setState(() {
-                        if (selectedGender == "FEMALE" && isGenderSelected) {
+                        if (selectedGender == Gender.female && isGenderSelected) {
                           isGenderSelected = false;
-                          selectedGender = "";
                         } else {
                           isGenderSelected = true;
-                          selectedGender = "FEMALE";
+                          selectedGender = Gender.female;
                         }
                       }),
                     },
                     child: ReusableCard(
-                      color: isGenderSelected && selectedGender == "FEMALE"
+                      color: isGenderSelected && selectedGender == Gender.female
                           ? containerBackgroundColor
                           : containerInActiveBackgroundColor,
                       child: IconContent(
