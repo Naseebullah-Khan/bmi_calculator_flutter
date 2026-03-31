@@ -3,11 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:bmi_calculator_flutter/icon_content.dart';
-
-const bottomContainerHeight = 80.0;
-const bottomContainerColor = Color(0xFFEB1555);
-const containerBackgroundColor = Color(0xFF1D1E33);
-const containerInActiveBackgroundColor = Color(0xFF111328);
+import 'package:bmi_calculator_flutter/constants.dart';
 
 enum Gender { male, female }
 
@@ -20,12 +16,14 @@ class InputPage extends StatefulWidget {
 
 class _InputPageState extends State<InputPage> {
   Gender? selectedGender;
+  int heightValue = kDefaultHeightValue;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('BMI CALCULATOR')),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Expanded(
             child: Row(
@@ -41,8 +39,8 @@ class _InputPageState extends State<InputPage> {
                       });
                     },
                     color: selectedGender == Gender.male
-                        ? containerBackgroundColor
-                        : containerInActiveBackgroundColor,
+                        ? kContainerBackgroundColor
+                        : kContainerInActiveBackgroundColor,
                     child: IconContent(
                       icon: FontAwesomeIcons.mars,
                       label: "MALE",
@@ -59,8 +57,8 @@ class _InputPageState extends State<InputPage> {
                       });
                     },
                     color: selectedGender == Gender.female
-                        ? containerBackgroundColor
-                        : containerInActiveBackgroundColor,
+                        ? kContainerBackgroundColor
+                        : kContainerInActiveBackgroundColor,
                     child: IconContent(
                       icon: FontAwesomeIcons.venus,
                       label: "FEMALE",
@@ -70,21 +68,52 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
-          Expanded(child: ReusableCard(color: containerBackgroundColor)),
+          Expanded(
+            child: ReusableCard(
+              color: kContainerBackgroundColor,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("HEIGHT", style: kLabelTextStyle),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.baseline,
+                    textBaseline: TextBaseline.alphabetic,
+                    children: [
+                      Text(heightValue.toString(), style: kValueTextStyle),
+                      Text("cm", style: kLabelTextStyle),
+                    ],
+                  ),
+                  Slider(
+                    value: heightValue.toDouble(),
+                    min: kMinHeight,
+                    max: kMaxHeight,
+                    activeColor: kSliderActiveColor,
+                    inactiveColor: kSliderInActiveColor,
+                    onChanged: (double newValue) {
+                      setState(() {
+                        heightValue = newValue.round();
+                      });
+                    },
+                  ),
+                ],
+              ),
+            ),
+          ),
           Expanded(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Expanded(child: ReusableCard(color: containerBackgroundColor)),
-                Expanded(child: ReusableCard(color: containerBackgroundColor)),
+                Expanded(child: ReusableCard(color: kContainerBackgroundColor)),
+                Expanded(child: ReusableCard(color: kContainerBackgroundColor)),
               ],
             ),
           ),
           Container(
-            color: bottomContainerColor,
+            color: kBottomContainerColor,
             margin: EdgeInsets.only(top: 10.0),
             width: double.infinity,
-            height: bottomContainerHeight,
+            height: kBottomContainerHeight,
           ),
         ],
       ),
