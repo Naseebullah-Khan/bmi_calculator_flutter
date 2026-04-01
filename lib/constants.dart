@@ -5,6 +5,7 @@ const kBottomContainerColor = Color(0xFFEB1555);
 const kContainerBackgroundColor = Color(0xFF1D1E33);
 const kContainerInActiveBackgroundColor = Color(0xFF111328);
 const kSliderActiveColor = Color(0xFFEB1555);
+const kSliderActiveColorWithOpacity = Color(0x29EB1555);
 const kSliderInActiveColor = Color(0xFF8D8E98);
 const double kMinHeight = 120;
 const double kMaxHeight = 220;

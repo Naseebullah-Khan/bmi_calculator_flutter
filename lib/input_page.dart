@@ -84,17 +84,29 @@ class _InputPageState extends State<InputPage> {
                       Text("cm", style: kLabelTextStyle),
                     ],
                   ),
-                  Slider(
-                    value: heightValue.toDouble(),
-                    min: kMinHeight,
-                    max: kMaxHeight,
-                    activeColor: kSliderActiveColor,
-                    inactiveColor: kSliderInActiveColor,
-                    onChanged: (double newValue) {
-                      setState(() {
-                        heightValue = newValue.round();
-                      });
-                    },
+                  SliderTheme(
+                    data: SliderTheme.of(context).copyWith(
+                      inactiveTrackColor: kSliderInActiveColor,
+                      activeTrackColor: Colors.white,
+                      thumbColor: kSliderActiveColor,
+                      overlayColor: kSliderActiveColorWithOpacity,
+                      thumbShape: RoundSliderThumbShape(
+                        enabledThumbRadius: 15.0,
+                      ),
+                      overlayShape: RoundSliderOverlayShape(
+                        overlayRadius: 30.0,
+                      ),
+                    ),
+                    child: Slider(
+                      value: heightValue.toDouble(),
+                      min: kMinHeight,
+                      max: kMaxHeight,
+                      onChanged: (double newValue) {
+                        setState(() {
+                          heightValue = newValue.round();
+                        });
+                      },
+                    ),
                   ),
                 ],
               ),
