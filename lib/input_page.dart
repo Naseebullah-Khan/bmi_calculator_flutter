@@ -1,7 +1,8 @@
-import 'package:bmi_calculator_flutter/reusable_card.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import 'package:bmi_calculator_flutter/reusable_card.dart';
+import 'package:bmi_calculator_flutter/round_icon_button.dart';
 import 'package:bmi_calculator_flutter/icon_content.dart';
 import 'package:bmi_calculator_flutter/constants.dart';
 
@@ -17,6 +18,8 @@ class InputPage extends StatefulWidget {
 class _InputPageState extends State<InputPage> {
   Gender? selectedGender;
   int heightValue = kDefaultHeightValue;
+  int widthValue = kDefaultWidthValue;
+  int ageValue = kDefaultAgeValue;
 
   @override
   Widget build(BuildContext context) {
@@ -116,8 +119,74 @@ class _InputPageState extends State<InputPage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Expanded(child: ReusableCard(color: kContainerBackgroundColor)),
-                Expanded(child: ReusableCard(color: kContainerBackgroundColor)),
+                Expanded(
+                  child: ReusableCard(
+                    color: kContainerBackgroundColor,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text("WIDTH", style: kLabelTextStyle),
+                        Text(widthValue.toString(), style: kValueTextStyle),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.minus,
+                              onPressed: () {
+                                setState(() {
+                                  widthValue--;
+                                });
+                              },
+                            ),
+                            SizedBox(width: 10.0),
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.plus,
+                              onPressed: () {
+                                setState(() {
+                                  widthValue++;
+                                });
+                              },
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: ReusableCard(
+                    color: kContainerBackgroundColor,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text("AGE", style: kLabelTextStyle),
+                        Text(ageValue.toString(), style: kValueTextStyle),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.minus,
+                              onPressed: () {
+                                setState(() {
+                                  ageValue--;
+                                });
+                              },
+                            ),
+                            SizedBox(width: 10.0),
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.plus,
+                              onPressed: () {
+                                setState(() {
+                                  ageValue++;
+                                });
+                              },
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
