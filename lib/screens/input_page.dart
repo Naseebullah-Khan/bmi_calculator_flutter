@@ -1,3 +1,4 @@
+import 'package:bmi_calculator_flutter/calculator_brain.dart';
 import 'package:bmi_calculator_flutter/screens/results_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -20,7 +21,7 @@ class InputPage extends StatefulWidget {
 class _InputPageState extends State<InputPage> {
   Gender? selectedGender;
   int heightValue = kDefaultHeightValue;
-  int widthValue = kDefaultWidthValue;
+  int weightValue = kDefaultWeightValue;
   int ageValue = kDefaultAgeValue;
 
   @override
@@ -127,8 +128,8 @@ class _InputPageState extends State<InputPage> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("WIDTH", style: kLabelTextStyle),
-                        Text(widthValue.toString(), style: kValueTextStyle),
+                        Text("WEIGHT", style: kLabelTextStyle),
+                        Text(weightValue.toString(), style: kValueTextStyle),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -136,7 +137,7 @@ class _InputPageState extends State<InputPage> {
                               icon: FontAwesomeIcons.minus,
                               onPressed: () {
                                 setState(() {
-                                  widthValue--;
+                                  weightValue--;
                                 });
                               },
                             ),
@@ -145,7 +146,7 @@ class _InputPageState extends State<InputPage> {
                               icon: FontAwesomeIcons.plus,
                               onPressed: () {
                                 setState(() {
-                                  widthValue++;
+                                  weightValue++;
                                 });
                               },
                             ),
@@ -193,10 +194,23 @@ class _InputPageState extends State<InputPage> {
             ),
           ),
           BottomButton(
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => ResultsPage()),
-            ),
+            onTap: () {
+              CalculatorBrain calc = CalculatorBrain(
+                heightValue: heightValue,
+                weightValue: weightValue,
+              );
+
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ResultsPage(
+                    bmiResult: calc.calculateBMI(),
+                    bmiText: calc.bmiResult(),
+                    bmiInterpretation: calc.getInterpretation(),
+                  ),
+                ),
+              );
+            },
             buttonTitle: "Calculate",
           ),
         ],

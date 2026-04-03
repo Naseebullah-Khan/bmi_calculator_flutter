@@ -5,7 +5,16 @@ import 'package:bmi_calculator_flutter/constants.dart';
 import 'package:bmi_calculator_flutter/components/bottom_button.dart';
 
 class ResultsPage extends StatelessWidget {
-  const ResultsPage({super.key});
+  const ResultsPage({
+    super.key,
+    required this.bmiResult,
+    required this.bmiText,
+    required this.bmiInterpretation,
+  });
+
+  final String bmiResult;
+  final String bmiText;
+  final String bmiInterpretation;
 
   @override
   Widget build(BuildContext context) {
@@ -30,10 +39,10 @@ class ResultsPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text("Normal", style: kResultTextColor),
-                  Text("26.7", style: kBMITextStyle),
+                  Text(bmiText, style: kResultTextColor),
+                  Text(bmiResult.toUpperCase(), style: kBMITextStyle),
                   Text(
-                    "You have higher than normal body width. Try to exercise more.",
+                    bmiInterpretation,
                     style: kBodyTextStyle,
                     textAlign: TextAlign.center,
                   ),

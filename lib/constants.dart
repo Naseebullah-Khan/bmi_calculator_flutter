@@ -18,7 +18,7 @@ const double kMinHeight = 120;
 const double kMaxHeight = 220;
 
 const int kDefaultHeightValue = 175;
-const int kDefaultWidthValue = 75;
+const int kDefaultWeightValue = 75;
 const int kDefaultAgeValue = 26;
 
 const TextStyle kLabelTextStyle = TextStyle(
